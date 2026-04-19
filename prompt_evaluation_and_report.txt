@@ -1,0 +1,68 @@
+============================================================
+  LLM PROMPT LOG - Evaluation Metrics & Report Writing
+============================================================
+
+Model Used  : Claude (claude-sonnet-4)
+Date        : April 19, 2026
+Task        : Generating evaluation strategy and writing the
+              Results & Evaluation section of the report
+
+------------------------------------------------------------
+PROMPT 1 (Evaluation Strategy):
+------------------------------------------------------------
+"I have fine-tuned DistilBERT on IMDB sentiment dataset.
+What evaluation metrics should I use beyond just accuracy?
+Give me Python code to:
+1. Plot confusion matrix using seaborn
+2. Generate classification report (precision, recall, F1)
+3. Plot training vs validation loss curve
+4. Show 5 correct and 5 incorrect predictions as examples
+Explain what each metric tells us about model performance."
+
+------------------------------------------------------------
+LLM RESPONSE SUMMARY (Prompt 1):
+------------------------------------------------------------
+- Recommended metrics: Accuracy, F1-score, Precision, Recall
+- Explained why F1 matters more than accuracy for balanced
+  binary classification (IMDB is 50/50 so both are fine here)
+- Provided seaborn confusion matrix code with color annotation
+- Suggested showing misclassified examples because:
+    * Reveals if model struggles with sarcasm
+    * Shows if very long reviews cause issues
+    * Good qualitative analysis for the report
+- Added tip: use trainer.state.log_history to extract
+  training loss curves without extra code
+
+------------------------------------------------------------
+PROMPT 2 (Report Writing):
+------------------------------------------------------------
+"Write the Results & Evaluation section for a Deep Learning
+mini project report on sentiment classification using
+DistilBERT on IMDB dataset. The model achieved:
+- Accuracy: 91.8%
+- F1-Score: 0.918
+- Precision: 0.923 (positive class)
+- Recall: 0.913 (positive class)
+Write in academic style, max 200 words, include analysis
+of what these results mean and mention limitations."
+
+------------------------------------------------------------
+LLM RESPONSE SUMMARY (Prompt 2):
+------------------------------------------------------------
+- Generated clean academic-style paragraph for results section
+- Noted that 91.8% accuracy on 1000-sample test set is
+  comparable to full BERT fine-tuned on full dataset
+- Mentioned overfitting risk with only 5000 training samples
+- Suggested future work: use full 25K training set with
+  Colab Pro for expected 93-94% accuracy
+- Included note on sarcasm as a key challenge for the model
+
+------------------------------------------------------------
+EFFECTIVENESS RATING: 9/10
+------------------------------------------------------------
+Both prompts were very effective. The evaluation code worked
+directly without modification. The report section needed
+minor editing to match our specific numbers but saved ~1 hour
+of writing time.
+
+============================================================

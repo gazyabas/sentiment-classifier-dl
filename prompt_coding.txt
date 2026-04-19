@@ -1,0 +1,103 @@
+============================================================
+  LLM PROMPT LOG - Coding
+  Project: Sentiment Classifier Behind Words
+============================================================
+
+Model Used  : Claude (claude-sonnet-4)
+Date        : April 19, 2026
+Task        : Writing the complete training pipeline code
+
+------------------------------------------------------------
+PROMPT 1 — Dataset Loading & Preprocessing
+------------------------------------------------------------
+"I am building a binary sentiment classifier using DistilBERT
+on the IMDB dataset in Google Colab (free tier, T4 GPU).
+Write me complete Python code to:
+1. Load the IMDB dataset using HuggingFace load_dataset
+2. Tokenize using distilbert-base-uncased tokenizer
+3. Apply truncation=True, padding=True, max_length=256
+4. Use .map(batched=True) for speed
+5. Convert to PyTorch format with set_format
+Make the code clean, commented, and beginner-friendly."
+
+LLM OUTPUT SUMMARY:
+- Provided full working code with inline comments
+- Used batched=True which gave 10x preprocessing speedup
+- Added dataset.set_format('torch') for PyTorch compatibility
+- Suggested printing dataset info for verification
+
+EFFECTIVENESS: 10/10 — Code ran without any modification
+
+------------------------------------------------------------
+PROMPT 2 — Model Fine-Tuning with Trainer API
+------------------------------------------------------------
+"Write Python code to fine-tune DistilBERT for binary
+sentiment classification using HuggingFace Trainer API.
+Requirements:
+- Use AutoModelForSequenceClassification with num_labels=2
+- TrainingArguments with num_train_epochs=2
+- per_device_train_batch_size=16
+- evaluation_strategy='epoch'
+- load_best_model_at_end=True
+- Use only 5000 training and 1000 eval samples
+- Add compute_metrics function with accuracy and F1
+Include all necessary imports. Add comments explaining
+each TrainingArgument parameter."
+
+LLM OUTPUT SUMMARY:
+- Generated complete fine-tuning code with all imports
+- Explained each TrainingArguments parameter in comments
+- Added .shuffle(seed=42) before .select() for reproducibility
+- Used evaluate library for metric computation
+- Warned about save_strategy needing to match eval_strategy
+
+EFFECTIVENESS: 9/10 — Needed minor fix: added
+  report_to="none" to suppress wandb warning on Colab
+
+------------------------------------------------------------
+PROMPT 3 — Inference Pipeline
+------------------------------------------------------------
+"Write Python code to build a real-time inference pipeline
+using HuggingFace pipeline() for my fine-tuned DistilBERT
+sentiment model. It should:
+1. Accept a list of custom text strings as input
+2. Return label (POSITIVE/NEGATIVE) and confidence score
+3. Print results in a formatted, readable way
+4. Handle edge cases like very short or empty strings
+Also write a loop that tests 10 diverse sentences including
+one sarcastic and one double-negation example."
+
+LLM OUTPUT SUMMARY:
+- Used transformers pipeline() with device=0 for GPU
+- Added try/except for empty string edge case
+- Created pretty-print format with confidence percentage
+- Generated 10 diverse test sentences covering:
+  * Clear positive/negative
+  * Mixed sentiment
+  * Sarcasm
+  * Double negation
+  * Very short inputs
+
+EFFECTIVENESS: 10/10 — Worked perfectly, great test cases
+
+------------------------------------------------------------
+PROMPT 4 — Full Notebook Cell Structure
+------------------------------------------------------------
+"Organize my DistilBERT sentiment classifier Colab notebook
+into clean, well-labeled cells. I have these components:
+pip install, imports, dataset loading, tokenization,
+model loading, training, evaluation, inference.
+Write the cell structure with markdown headers and
+brief descriptions for each cell so the notebook
+looks professional and is easy to follow."
+
+LLM OUTPUT SUMMARY:
+- Created 9 clearly labeled cells with markdown headers
+- Added estimated runtime for each cell (helpful for Colab)
+- Suggested putting pip install in first cell separately
+- Added a 'Sanity Check' cell after tokenization to verify
+  shapes before training
+
+EFFECTIVENESS: 9/10 — Made the notebook much cleaner
+
+============================================================

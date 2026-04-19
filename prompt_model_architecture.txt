@@ -1,0 +1,43 @@
+============================================================
+  LLM PROMPT LOG - Model Architecture & Selection
+============================================================
+
+Model Used  : Claude (claude-sonnet-4)
+Date        : April 19, 2026
+Task        : Understanding and selecting the best model architecture
+              for sentiment classification
+
+------------------------------------------------------------
+PROMPT:
+------------------------------------------------------------
+"I am building a sentiment classifier for IMDB movie reviews
+as part of a Deep Learning mini project. I have only free
+Google Colab (T4 GPU, ~12GB RAM). Suggest the best model
+architecture for binary sentiment classification (positive /
+negative). Should I use LSTM, BiLSTM, or a Transformer-based
+model like DistilBERT? Also suggest the best hyperparameters
+for fine-tuning on free Colab without timeout issues."
+
+------------------------------------------------------------
+LLM RESPONSE SUMMARY:
+------------------------------------------------------------
+- Recommended DistilBERT (distilbert-base-uncased) because:
+    * 40% smaller than BERT but retains 97% of performance
+    * Fits within free Colab GPU memory
+    * Pre-trained on large corpus, fine-tunes fast (~2 epochs)
+- Suggested hyperparameters:
+    * max_length = 256 (not 512 to save memory)
+    * batch_size = 16 (train), 32 (eval)
+    * num_epochs = 2
+    * learning_rate = 2e-5
+    * Only use 5000 training samples to avoid Colab timeout
+- Recommended HuggingFace Trainer API for clean training loop
+
+------------------------------------------------------------
+EFFECTIVENESS RATING: 9/10
+------------------------------------------------------------
+Very helpful. The hyperparameter suggestions saved significant
+trial and error time. The advice to limit to 5000 samples
+was crucial for running on free Colab without disconnection.
+
+============================================================

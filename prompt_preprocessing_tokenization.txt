@@ -1,0 +1,61 @@
+============================================================
+  LLM PROMPT LOG - Data Preprocessing & Tokenization
+============================================================
+
+Model Used  : ChatGPT (GPT-4o)
+Date        : April 19, 2026
+Task        : Writing preprocessing and tokenization pipeline
+              for IMDB dataset using HuggingFace
+
+------------------------------------------------------------
+PROMPT:
+------------------------------------------------------------
+"I am using the HuggingFace IMDB dataset for sentiment
+analysis. Write me a complete preprocessing pipeline that:
+1. Loads the dataset using load_dataset
+2. Cleans HTML tags and special characters from reviews
+3. Tokenizes using DistilBERT tokenizer with truncation
+4. Handles padding correctly for batch processing
+5. Converts to PyTorch tensors ready for Trainer API
+Also explain why max_length=256 is better than 512 for
+free Colab."
+
+------------------------------------------------------------
+LLM RESPONSE SUMMARY:
+------------------------------------------------------------
+- Provided full tokenization function using AutoTokenizer
+- Explained padding='max_length' vs padding=True difference:
+    * padding=True (dynamic padding) is more memory efficient
+    * padding='max_length' gives consistent tensor shapes
+- Suggested using .map(batched=True) for 10x speed boost
+- Explained max_length=256 reasoning:
+    * Most IMDB reviews are under 256 tokens
+    * Halves memory usage vs max_length=512
+    * Allows larger batch_size which stabilizes training
+- Added tip to set remove_unused_columns=False in Trainer
+
+------------------------------------------------------------
+CODE GENERATED (used directly):
+------------------------------------------------------------
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
+
+def tokenize(batch):
+    return tokenizer(
+        batch['text'],
+        truncation=True,
+        padding=True,
+        max_length=256
+    )
+
+tokenized = dataset.map(tokenize, batched=True)
+
+------------------------------------------------------------
+EFFECTIVENESS RATING: 10/10
+------------------------------------------------------------
+Excellent. The batched=True tip alone reduced preprocessing
+time from ~8 minutes to under 1 minute on free Colab.
+The explanation of padding strategies was very educational.
+
+============================================================
