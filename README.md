@@ -1,7 +1,7 @@
-==========================================================================
+=============================================
   README - Sentiment Classifier Behind Words
   Deep Learning Mini Project | 3-Week Sprint
-==========================================================================
+=============================================
 
 PROJECT TITLE   : Sentiment Classifier Behind Words
 TEAM MEMBERS    : [Gazy Abbas] | [2025RCP9521]
@@ -10,9 +10,9 @@ TEAM MEMBERS    : [Gazy Abbas] | [2025RCP9521]
 COURSE          : Deep Learning
 SUBMISSION DATE : [19-04-2026]
 
---------------------------------------------------------------------------
+---------------------------------------------------------
   PROJECT OVERVIEW
---------------------------------------------------------------------------
+---------------------------------------------------------
 
 This project builds a binary sentiment classifier (Positive / Negative)
 on the IMDB Movie Reviews dataset using DistilBERT - a lightweight
